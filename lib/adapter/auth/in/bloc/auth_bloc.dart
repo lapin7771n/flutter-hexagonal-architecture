@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/load_user_use_case.dart';
+import 'package:flutter_hexagonal/application/auth/port/in/login_command.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/login_use_case.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/logout_use_case.dart';
 import 'package:flutter_hexagonal/domain/auth/user.dart';
@@ -17,7 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     this.loadUserUseCase,
   ) : super(AuthInitial()) {
     on<LoginAuthEvent>((event, emit) async {
-      final user = await loginUseCase.login(event.email, event.password);
+      final loginCommand = LoginCommand(event.email, event.password);
+      final user = await loginUseCase.login(loginCommand);
       emit(AuthLoggedInState(user));
     });
 

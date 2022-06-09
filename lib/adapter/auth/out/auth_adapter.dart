@@ -16,7 +16,7 @@ class AuthAdapter with LoginPort, LogoutPort, LoadUserPort {
       password: password,
     );
 
-    if (userCredentials.user != null) {
+    if (userCredentials.user == null) {
       throw UserNotFound();
     }
 

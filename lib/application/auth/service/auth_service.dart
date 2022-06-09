@@ -1,4 +1,5 @@
 import 'package:flutter_hexagonal/application/auth/port/in/load_user_use_case.dart';
+import 'package:flutter_hexagonal/application/auth/port/in/login_command.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/login_use_case.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/logout_use_case.dart';
 import 'package:flutter_hexagonal/application/auth/port/out/load_user_port.dart';
@@ -21,8 +22,8 @@ class AuthService with LoadUserUseCase, LoginUseCase, LogoutUseCase {
   }
 
   @override
-  Future<User> login(String email, String password) {
-    return loginPort.login(email, password);
+  Future<User> login(LoginCommand loginCommand) {
+    return loginPort.login(loginCommand.email, loginCommand.password);
   }
 
   @override
