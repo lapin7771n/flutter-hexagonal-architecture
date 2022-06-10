@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hexagonal/adapter/auth/in/bloc/auth_bloc.dart';
 import 'package:flutter_hexagonal/adapter/auth/in/ui/loading_page.dart';
-import 'package:flutter_hexagonal/adapter/auth/in/ui/login_page.dart';
+import 'package:flutter_hexagonal/adapter/auth/in/ui/login_page/login_page.dart';
 import 'package:flutter_hexagonal/adapter/auth/in/ui/user_info_page.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/load_user_use_case.dart';
 import 'package:flutter_hexagonal/application/auth/port/in/login_use_case.dart';
@@ -28,7 +28,7 @@ class AuthenticationPage extends StatelessWidget {
                 if (state is UnauthState)
                   const MaterialPage(child: LoginPage()),
                 if (state is AuthLoggedInState)
-                  const MaterialPage(child: UserInfoPage()),
+                  MaterialPage(child: UserInfoPage(user: state.user)),
                 if (state is AuthInitial)
                   const MaterialPage(child: LoadingPage()),
               ],
